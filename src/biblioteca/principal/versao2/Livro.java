@@ -3,6 +3,11 @@ package biblioteca.principal.versao2;
 public class Livro {
 	private String nome;
 	private String status;
+	public Livro(String nome) {
+		setNome(nome);
+		setStatus("Disponível");
+	}
+	
 	public String getNome() {
 		return nome;
 	}

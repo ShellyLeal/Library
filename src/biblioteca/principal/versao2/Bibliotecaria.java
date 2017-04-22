@@ -50,6 +50,10 @@ public class Bibliotecaria {
 		for(int i = 0;i<cadastrados.size();i++)
 			System.out.println(cadastrados.get(i).getNome());
 	}
-
+	public void listarLivros() {
+		System.out.println("Livros cadastrados:");
+		for(int i = 0;i<livros.size();i++)
+			System.out.println("livro: "+livros.get(i).getNome()+" "+"|status: "+livros.get(i).getStatus());
+	}
 
 }
