@@ -1,5 +1,9 @@
 package biblioteca.principal.versao2;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import junit.framework.TestCase;
 
 public class TesteEmprestimoBiblioteca extends TestCase{
@@ -29,5 +33,12 @@ public class TesteEmprestimoBiblioteca extends TestCase{
 			bibliotecaria.cadastrarUsuario(usuario);
 			bibliotecaria.registrarEmprestimo(usuario , l2);
 			assertEquals(l2.getStatus(),"Emprestado");
+		}
+		public void testaMockEmprestimoLivroUsuarioCadastrado(){
+			Bibliotecaria bibliotecaria = mock(Bibliotecaria.class);
+			Usuario usuario = new Usuario("Tom Marvel");
+			bibliotecaria.cadastrarUsuario(usuario);
+			bibliotecaria.registrarEmprestimo(usuario , l2);
+			verify(bibliotecaria,times(1)).registrarEmprestimo(usuario,l2);
 		}
 }
