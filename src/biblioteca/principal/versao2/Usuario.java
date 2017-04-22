@@ -40,4 +40,12 @@ public class Usuario {
 		this.livrosemprestados = livrosemprestados;
 	}
 	
+	public void devolverLivroEmprestado(Livro livro){
+		for(int i = 0;i<livrosemprestados.size();i++)
+			if(livro.getNome().equals(livrosemprestados.get(i).getNome()))
+				getLivrosEmprestados().remove(i);
+	}
+	public void pegarLivroEmprestado(Livro livro){
+		getLivrosEmprestados().add(livro);
+	}
 }

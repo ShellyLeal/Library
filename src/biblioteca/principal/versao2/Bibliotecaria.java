@@ -61,8 +61,20 @@ public class Bibliotecaria {
 		else {
 			if(livro.getStatus().equals("Disponível"))
 			{
-				usuario.getLivrosEmprestados().add(livro);
+				usuario.pegarLivroEmprestado(livro);
 				livro.setStatus("Emprestado");
+			}
+			else
+				System.out.println("Livro "+livro.getNome()+" indisponível. Status: "+livro.getStatus());
+		}
+	}
+	public void registrarDevolucao(Usuario usuario, Livro livro){
+		if(!usuario.getVerificaCadastrado()){System.out.println("Usuário "+ usuario.getNome() + " não cadastrado.");}
+		else {
+			if(livro.getStatus().equals("Emprestado"))
+			{ 
+				usuario.devolverLivroEmprestado(livro);
+				livro.setStatus("Disponível");
 			}
 			else
 				System.out.println("Livro "+livro.getNome()+" indisponível. Status: "+livro.getStatus());
