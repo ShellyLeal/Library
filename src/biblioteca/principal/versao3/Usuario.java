@@ -48,4 +48,10 @@ public class Usuario {
 	public void pegarLivroEmprestado(Livro livro){
 		getLivrosEmprestados().add(livro);
 	}
+	public Livro pesquisarLivroNoSistema(Bibliotecaria biblioteca, Livro livro){
+		for(int i = 0;i<biblioteca.livros.size();i++)
+			if(livro.getNome().equals(biblioteca.livros.get(i).getNome()))
+				return livro;
+		return null;
+	};
 }
