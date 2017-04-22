@@ -55,5 +55,17 @@ public class Bibliotecaria {
 		for(int i = 0;i<livros.size();i++)
 			System.out.println("livro: "+livros.get(i).getNome()+" "+"|status: "+livros.get(i).getStatus());
 	}
-
+	public void registrarEmprestimo(Usuario usuario, Livro livro){
+		if(!usuario.getVerificaCadastrado()){System.out.println("Usuário "+ usuario.getNome() + " não cadastrado.");}
+		else if(!usuario.getAutorizacaoEmprestimo()){System.out.println("Usuário "+ usuario.getNome() + " bloqueado.");}
+		else {
+			if(livro.getStatus().equals("Disponível"))
+			{
+				usuario.getLivrosEmprestados().add(livro);
+				livro.setStatus("Emprestado");
+			}
+			else
+				System.out.println("Livro "+livro.getNome()+" indisponível. Status: "+livro.getStatus());
+		}
+	}
 }

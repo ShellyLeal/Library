@@ -18,4 +18,16 @@ public class TesteEmprestimoBiblioteca extends TestCase{
 			ListaBiblioteca();
 			bibliotecaria.listarLivros();
 		}
+		public void testaEmprestimoLivroUsuarioNaoCadastrado(){
+			ListaBiblioteca();
+			Usuario usuario = new Usuario("Joe Jonas");
+			bibliotecaria.registrarEmprestimo(usuario , l2);
+		}
+		public void testaEmprestimoLivroUsuarioCadastrado(){
+			ListaBiblioteca();
+			Usuario usuario = new Usuario("Tom Marvel");
+			bibliotecaria.cadastrarUsuario(usuario);
+			bibliotecaria.registrarEmprestimo(usuario , l2);
+			assertEquals(l2.getStatus(),"Emprestado");
+		}
 }

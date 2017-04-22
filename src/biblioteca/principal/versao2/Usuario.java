@@ -1,10 +1,12 @@
 package biblioteca.principal.versao2;
 
+import java.util.ArrayList;
 
 public class Usuario {
 	private String nome;
 	private boolean autorizacao; // autorização do usuário
 	private boolean verifica;
+	private ArrayList<Livro> livrosemprestados = new ArrayList<Livro>();
     public Usuario(String nome) {
 		setNome(nome);
 		setVerificaCadastrado(false);
@@ -30,6 +32,12 @@ public class Usuario {
 	}
 	public void setVerificaCadastrado(boolean verifica) {
 		this.verifica = verifica;
+	}
+	public ArrayList<Livro> getLivrosEmprestados() {
+		return livrosemprestados;
+	}
+	public void setLivrosEmprestado(ArrayList<Livro> livrosemprestados) {
+		this.livrosemprestados = livrosemprestados;
 	}
 	
 }
