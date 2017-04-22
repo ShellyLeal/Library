@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Bibliotecaria {
 	public ArrayList<Usuario> cadastrados = new ArrayList<Usuario>();
+	public ArrayList<Livro> livros = new ArrayList<Livro>();
 	public void cadastrarUsuario(Usuario usuario) {
 		if(usuario.getVerificaCadastrado())
 			System.out.println("Usuário "+ usuario.getNome() +" já possui cadastro");
