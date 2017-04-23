@@ -7,10 +7,13 @@ public class Usuario {
 	private boolean autorizacao; // autorização do usuário
 	private boolean verifica;
 	private ArrayList<Livro> livrosemprestados = new ArrayList<Livro>();
+	private ArrayList<String> nomelivrosemprestados = new ArrayList<String>();
+	private String situacaoBloqueio;
     public Usuario(String nome) {
 		setNome(nome);
 		setVerificaCadastrado(false);
 		setAutorizacaoEmprestimo(false);
+		setSituacaoBloqueio("Não bloqueado");
 	}
 
 	// para realizar empréstimos
@@ -62,8 +65,12 @@ public class Usuario {
 		return false;
 	}
 
-	public void setSituacaoBloqueio(String string) {
-		// TODO Auto-generated method stub
+	public void setSituacaoBloqueio(String situacaoBloqueio) {
+		this.situacaoBloqueio = situacaoBloqueio;
+		
+	};
+	public String getSituacaoBloqueio() {
+		return situacaoBloqueio;
 		
 	};
 }
