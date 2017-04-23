@@ -30,5 +30,11 @@ public class TesteAcessoUsuarioSistema extends TestCase {
 		biblioteca.livros.add(livro);
 		assertEquals(usuario.pesquisarLivroNoSistema(biblioteca, livro).getStatus(),"Disponível");
 	}
+	public void testeMockListarLivrosUsuario (){
+		Usuario usuario = mock(Usuario.class);
+		usuario.listarLivrosEmprestados();
+		verify(usuario,times(1)).listarLivrosEmprestados();
+		
+	}
 	
 }

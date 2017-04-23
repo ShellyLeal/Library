@@ -7,7 +7,6 @@ public class Usuario {
 	private boolean autorizacao; // autorização do usuário
 	private boolean verifica;
 	private ArrayList<Livro> livrosemprestados = new ArrayList<Livro>();
-	private ArrayList<String> nomelivrosemprestados = new ArrayList<String>();
 	private String situacaoBloqueio;
     public Usuario(String nome) {
 		setNome(nome);
@@ -73,4 +72,9 @@ public class Usuario {
 		return situacaoBloqueio;
 		
 	};
+	public void listarLivrosEmprestados(){
+		System.out.println("Lista de livros emprestados do usuario "+ this.getNome());
+		for(int i = 0;i<livrosemprestados.size();i++)
+			System.out.println("Livro: "+livrosemprestados.get(i).getNome()+" Status: "+livrosemprestados.get(i).getStatus());
+	}
 }

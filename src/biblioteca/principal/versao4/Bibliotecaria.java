@@ -70,7 +70,6 @@ public class Bibliotecaria {
 	}
 	public void registrarExtravio(Usuario usuario, Livro livro){
 		if(!usuario.getVerificaCadastrado()){System.out.println("Usuário "+ usuario.getNome() + " não cadastrado.");}
-		else if(!usuario.getAutorizacaoEmprestimo()){System.out.println("Usuário "+ usuario.getNome() + " bloqueado.");}
 		else {
 			if(livro.getStatus().equals("Emprestado")&& usuario.buscarLivro(livro))
 			{	bloquearUsuario(usuario);
@@ -84,7 +83,6 @@ public class Bibliotecaria {
 	}
 	public void registrarAtraso(Usuario usuario, Livro livro){
 		if(!usuario.getVerificaCadastrado()){System.out.println("Usuário "+ usuario.getNome() + " não cadastrado.");}
-		else if(!usuario.getAutorizacaoEmprestimo()){System.out.println("Usuário "+ usuario.getNome() + " bloqueado.");}
 		else {
 			if(livro.getStatus().equals("Emprestado")&& usuario.buscarLivro(livro))
 			{	bloquearUsuario(usuario);
