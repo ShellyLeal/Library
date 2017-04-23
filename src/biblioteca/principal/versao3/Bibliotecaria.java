@@ -12,6 +12,7 @@ public class Bibliotecaria {
 			cadastrados.add(usuario);
 			usuario.setAutorizacaoEmprestimo(true);
 			usuario.setVerificaCadastrado(true);
+			usuario.setSituacaoBloqueio("Não bloqueado");
 			}
 	}
 
@@ -33,7 +34,6 @@ public class Bibliotecaria {
 	public void bloquearUsuario(Usuario usuario) {
 		if(usuario.getVerificaCadastrado())
 			usuario.setAutorizacaoEmprestimo(false);
-		
 		else
 			System.out.println("Usuario "+ usuario.getNome() +" nao consta no sistema");
 	}
@@ -41,7 +41,7 @@ public class Bibliotecaria {
 	public void desbloquearUsuario(Usuario usuario) {
 		if(usuario.getVerificaCadastrado())
 			usuario.setAutorizacaoEmprestimo(true);
-		
+			
 		else
 			System.out.println("Usuario "+ usuario.getNome() +" nao consta no sistema");
 	}
@@ -68,13 +68,42 @@ public class Bibliotecaria {
 				System.out.println("Livro "+livro.getNome()+" indisponível. Status: "+livro.getStatus());
 		}
 	}
+	public void registrarExtravio(Usuario usuario, Livro livro){
+		if(!usuario.getVerificaCadastrado()){System.out.println("Usuário "+ usuario.getNome() + " não cadastrado.");}
+		else if(!usuario.getAutorizacaoEmprestimo()){System.out.println("Usuário "+ usuario.getNome() + " bloqueado.");}
+		else {
+			if(livro.getStatus().equals("Emprestado")&& usuario.buscarLivro(livro))
+			{	bloquearUsuario(usuario);
+				usuario.setAutorizacaoEmprestimo(false);
+				usuario.setSituacaoBloqueio("Bloqueado por extravio");
+				livro.setStatus("Extraviado");
+			}
+			else
+				System.out.println("Livro "+livro.getNome()+" não foi emprestado para esse usuário. Status: "+livro.getStatus());
+		}
+	}
+	public void registrarAtraso(Usuario usuario, Livro livro){
+		if(!usuario.getVerificaCadastrado()){System.out.println("Usuário "+ usuario.getNome() + " não cadastrado.");}
+		else if(!usuario.getAutorizacaoEmprestimo()){System.out.println("Usuário "+ usuario.getNome() + " bloqueado.");}
+		else {
+			if(livro.getStatus().equals("Emprestado")&& usuario.buscarLivro(livro))
+			{	bloquearUsuario(usuario);
+				usuario.setAutorizacaoEmprestimo(false);
+				usuario.setSituacaoBloqueio("Bloqueado por atraso");
+				livro.setStatus("Atraso na devolução");
+			}
+			else
+				System.out.println("Livro "+livro.getNome()+" não foi emprestado para esse usuário. Status: "+livro.getStatus());
+		}
+	}
 	public void registrarDevolucao(Usuario usuario, Livro livro){
 		if(!usuario.getVerificaCadastrado()){System.out.println("Usuário "+ usuario.getNome() + " não cadastrado.");}
 		else {
-			if(livro.getStatus().equals("Emprestado"))
+			if(!livro.getStatus().equals("Disponível"))
 			{ 
 				usuario.devolverLivroEmprestado(livro);
 				livro.setStatus("Disponível");
+				usuario.setSituacaoBloqueio("Não bloqueado");
 			}
 			else
 				System.out.println("Livro "+livro.getNome()+" indisponível. Status: "+livro.getStatus());

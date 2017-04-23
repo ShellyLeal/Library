@@ -53,5 +53,17 @@ public class Usuario {
 			if(livro.getNome().equals(biblioteca.livros.get(i).getNome()))
 				return livro;
 		return null;
+	}
+
+	public boolean buscarLivro(Livro livro) {
+		for(int i = 0;i<livrosemprestados.size();i++)
+			if(livro.getNome().equals(livrosemprestados.get(i).getNome()))
+				return true;
+		return false;
+	}
+
+	public void setSituacaoBloqueio(String string) {
+		// TODO Auto-generated method stub
+		
 	};
 }
